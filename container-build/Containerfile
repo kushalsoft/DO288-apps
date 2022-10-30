@@ -1,0 +1,34 @@
+FROM quay.io/redhattraining/httpd-parent
+
+MAINTAINER Red Hat Training <training@redhat.com>
+
+LABEL io.k8s.description="A apache web server" \
+      io.k8s.display-name="Apache hola web server" \
+      io.openshift.expose-services="8080:http" \
+      io.openshift.tags="httpd,apache" 
+
+
+
+# DocumentRoot for Apache
+
+
+RUN   yum install -y --nodocs --disableplugin=subscription-manager httpd && \
+      yum clean all --disableplugin=subscription-manager -y && \
+      echo "Hello from the httpd-parent container!" > ${DOCROOT}/index.html
+
+RUN sed -i "s/Listen 80/Listen 8080/g" /etc/httpd/conf/httpd.conf
+RUN sed -i "s/#ServerName www.example.com:80/ServerName 0.0.0.0:8080/g" /etc/httpd/conf/httpd.conf
+
+# Allows child images to inject their own content into DocumentRoot
+
+RUN chgrp -R 0 /var/run/httpd /var/log/httpd \
+    && chmod -R g=u /var/run/httpd var/log/httpd
+
+EXPOSE 8080
+
+
+# Run as the root user
+USER 1001
+
+# Launch httpd
+#CMD /usr/sbin/httpd -DFOREGROUND
