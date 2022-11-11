@@ -2,7 +2,7 @@
 
 /usr/libexec/s2i/assemble
 
-DATE=date "+%b %d %Y"
+DATE=$(date "+%b %d %Y")
 
 echo $DTAE >> ./info.html
 
