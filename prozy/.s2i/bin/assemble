@@ -3,6 +3,5 @@
 /usr/libexec/s2i/assemble
 
 DATE=$(date "+%b %d %Y")
-
-echo $DTAE >> ./info.html
-
+echo $DATE
+echo "Page build on $DATE" >> ./info.html
