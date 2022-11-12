@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: exoplanets-exoxhart
+
+sepc:
+   template:
+       sepc:
+         containers:
+            - name: exoxhart
+              livenessProbe:
+                   httpGet:  
+                      path: /
+                      port: 8080
+                      schme: http
+                   initialDelaySeconds: 10
+                   periodSeconds: 10
+                   timeoutSeconds: 10
+
+
+

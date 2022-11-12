@@ -1,0 +1,7 @@
+bases:
+  - ../../base
+ 
+patches:
+    - replicas_limit.yaml
+    - app_probes.yaml   
+
