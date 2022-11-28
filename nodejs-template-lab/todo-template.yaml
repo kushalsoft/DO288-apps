@@ -1,8 +1,7 @@
 kind: Template
 apiVersion: template.openshift.io/v1
 metadata:
-  name: nodejs-mongodb  
-  
+  name: nodejs-mongodb
   annotations:
     openshift.io/display-name: Node.js + MongoDB     
     description: An Node.js application with a MongoDB database.
